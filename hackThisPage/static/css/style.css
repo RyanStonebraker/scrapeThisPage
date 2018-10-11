@@ -17,6 +17,8 @@ header nav {
 header nav a {
   flex: 1;
   text-align: center;
+  text-decoration: none;
+  color: black;
 }
 
 header nav input[name="search"] {
