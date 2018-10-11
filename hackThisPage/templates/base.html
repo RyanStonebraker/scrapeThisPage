@@ -3,19 +3,24 @@
   <head>
     <meta charset="utf-8">
     <title>{% block title %}{% endblock %}</title>
+     <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
   </head>
   <body>
     <header>
-      <h1>CATS R US, INC.</h1>
       <nav>
         <a href="#">Home</a>
         <a href="#">Testimonials</a>
+        <input type="text" name="search" value="">
         <a href="#">Buy-A-Cat</a>
         <a href="#">Login</a>
       </nav>
+      <figure class="logo">
+        <img src="{{ url_for('static', filename='img/cat_black.svg') }}" />
+        <h1>CATS R US, INC.</h1>
+      </figure>
     </header>
     <main>
-      {% block body %} {% endblock %}
+      {% block articles %} {% endblock %}
     </main>
   </body>
 </html>
