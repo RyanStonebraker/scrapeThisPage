@@ -22,7 +22,13 @@ def retrieveCats(catName=""):
         mysqlCursor.execute("SELECT * FROM cats")
     else:
         query = "SELECT * FROM cats WHERE name LIKE '%" + catName + "%'"
-        mysqlCursor.execute(query)
+        if ";" in query:
+            for singleQuery in query.split(';'):
+                if singleQuery.strip():
+                    mysqlCursor.execute(singleQuery)
+            mysqlConnection.commit()
+        else:
+            mysqlCursor.execute(query)
     cats = mysqlCursor.fetchall()
 
     return cats
