@@ -1,6 +1,17 @@
+html, body {
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  background-position: center;
+  background-size: cover;
+  background-attachment: fixed;
+}
+
 header {
   display: flex;
-  height: 90vh;
+  height: 100vh;
   flex-direction: column;
   justify-content: flex-start;
   align-items: center;
@@ -18,7 +29,7 @@ header nav a {
   flex: 1;
   text-align: center;
   text-decoration: none;
-  color: black;
+  color: whitesmoke;
 }
 
 header nav input[name="search"] {
@@ -46,6 +57,40 @@ header figure.logo {
   flex-direction: column;
 }
 
-figure.logo img {
+header figure.logo img {
   max-width: 200px;
+}
+
+main {
+  margin: 10%;
+  color: whitesmoke;
+  border-radius: 15px;
+}
+
+main article {
+  display: flex;
+  flex-direction: row;
+  padding: 25px;
+  margin: 25px 0;
+  border-radius: 15px;
+  backdrop-filter: blur(5px) contrast(0.75);
+}
+
+main article figure {
+  margin: 0;
+}
+
+main article section.info {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  padding: 0 25px;
+}
+
+footer {
+  color: white;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  backdrop-filter: blur(5px) contrast(0.75);
 }

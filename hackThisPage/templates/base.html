@@ -3,9 +3,9 @@
   <head>
     <meta charset="utf-8">
     <title>{% block title %}{% endblock %}</title>
-     <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+     <link rel="stylesheet" href={{ url_for('static', filename='css/style.css') }}>
   </head>
-  <body>
+  <body style="background-image: url({{ url_for('static', filename='img/lightedroad.jpg') }});">
     <header>
       <nav>
         <a href="#">Home</a>
@@ -15,7 +15,7 @@
         <a href="#">Login</a>
       </nav>
       <figure class="logo">
-        <img src="{{ url_for('static', filename='img/cat_black.svg') }}" />
+        <img src={{ url_for('static', filename='img/cat_black.svg') }} />
         <h1>CATS R US, INC.</h1>
       </figure>
     </header>
@@ -23,4 +23,7 @@
       {% block articles %} {% endblock %}
     </main>
   </body>
+  <footer>
+    <h4>&copy; Ryan Stonebraker, 2018</h4>
+  </footer>
 </html>
