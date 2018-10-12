@@ -3,15 +3,15 @@
 
 {% block articles %}
 {% for cat in cats %}
-<article>
-  <figure>
-    <img src="{{ cat[0] }}">
-  </figure>
-  <section class="info">
-    <h1>{{ cat[3] }}</h1>
-    <h4>${{ '%0.2f' % cat[1]|float }}</h4>
-    <p>{{ cat[2] }}</p>
-  </section>
-</article>
+  <article>
+    <figure>
+      <img src="{{ cat[0] }}">
+    </figure>
+    <section class="info">
+      <h1>{{ cat[3] }}</h1>
+      <h4>${{ '%0.2f' % cat[1]|float }}</h4>
+      <p>{{ cat[2] }}</p>
+    </section>
+  </article>
 {% endfor %}
 {% endblock %}
