@@ -139,6 +139,44 @@ main article section.info h4 {
   margin-left: 15px;
 }
 
+main form.login {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+main form.login input {
+  margin: 15px 0;
+  font-size: 25px;
+  border: none;
+  border-radius: 5px;
+  outline: none;
+  background-color: rgba(255, 255, 255, 0.75);
+}
+
+main form.login input[type="text"],
+main form.login input[type="password"] {
+  width: calc(100% - 30px);
+  padding: 15px;
+}
+
+main form.login input[type="submit"] {
+  padding: 15px;
+  width: 25%;
+}
+
+main h5.message {
+  margin: auto;
+  text-align: center;
+  color: red;
+  font-size: 20px;
+  background-color: rgba(255,255,255,.75);
+  padding: 15px;
+  margin-top: 50px;
+  border-radius: 5px;
+}
+
 footer {
   color: white;
   display: flex;

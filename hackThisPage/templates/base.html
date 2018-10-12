@@ -3,32 +3,41 @@
   <head>
     <meta charset="utf-8">
     <title>{% block title %}{% endblock %}</title>
-     <link rel="stylesheet" href={{ url_for('static', filename='css/style.css') }}>
-     <link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet">
+    <link rel="stylesheet" href={{ url_for('static', filename='css/style.css') }}>
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet">
     <link rel="shortcut icon" href="{{ url_for('static', filename='img/favicon.png') }}">
-     <script src={{ url_for('static', filename='js/fix-search.js') }}></script>
+    {% if frontpage %}
+      <script src={{ url_for('static', filename='js/fix-search.js') }}></script>
+    {% else %}
+      <style type="text/css">
+        header { height: auto; }
+        header nav li.top-search-bar input { visibility: visible; }
+      </style>
+    {% endif %}
   </head>
   <body style="background-image: url({{ url_for('static', filename='img/lightedroad.jpg') }});">
     <header>
-      <nav>
+    <nav class="{{ '' if frontpage else 'fixed-bg' }}">
         <li><a href="/">Home</a></li>
         <li><a href="#">Testimonials</a></li>
         <form action="/search">
-          <li class="top-search-bar"><input type="text" name="catName" placeholder="Find now"></li>
+          <li class="top-search-bar"><input type="text" name="catName" placeholder="Find now" value="{{ request.args.catName }}"></li>
         </form>
         <li><a href="#">Buy-A-Cat</a></li>
-        <li><a href="#">Login</a></li>
+        <li><a href="/login">Login</a></li>
       </nav>
-      <figure class="logo">
-        <img src={{ url_for('static', filename='img/cat_black.svg') }} />
-        <h1>CATS R US, INC.</h1>
-        <form action="/search">
-          <input type="text" name="catName" placeholder="Find now">
-        </form>
-      </figure>
+      {% if frontpage %}
+        <figure class="logo">
+          <img src="{{ url_for('static', filename='img/cat_black.svg') }}" />
+          <h1>CATS R US, INC.</h1>
+          <form action="/search">
+            <input type="text" name="catName" placeholder="Find now" value="{{ request.args.catName }}">
+          </form>
+        </figure>
+      {% endif %}
     </header>
     <main>
-      {% block articles %} {% endblock %}
+      {% block main %} {% endblock %}
     </main>
   </body>
   <footer>
