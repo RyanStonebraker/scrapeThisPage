@@ -5,6 +5,7 @@
     <title>{% block title %}{% endblock %}</title>
      <link rel="stylesheet" href={{ url_for('static', filename='css/style.css') }}>
      <link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet">
+     <script src={{ url_for('static', filename='js/fix-search.js') }}></script>
   </head>
   <body style="background-image: url({{ url_for('static', filename='img/lightedroad.jpg') }});">
     <header>

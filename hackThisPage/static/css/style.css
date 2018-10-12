@@ -75,7 +75,7 @@ header input[name="search"] {
   outline: none;
   text-align: center;
   align-items: center;
-  transition: all 0.5s ease;
+  transition: width 0.5s ease;
   font-family: 'Open Sans', sans-serif;
   background-color: rgba(228,228,228, 0.75);
   color: black;
@@ -87,7 +87,7 @@ header input[name="search"]::placeholder {
 
 header input[name="search"]:focus {
   width: 500px;
-  transition: all 0.5s ease;
+  transition: width 0.5s ease;
 }
 
 main {
