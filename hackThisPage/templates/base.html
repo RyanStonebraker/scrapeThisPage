@@ -5,6 +5,7 @@
     <title>{% block title %}{% endblock %}</title>
      <link rel="stylesheet" href={{ url_for('static', filename='css/style.css') }}>
      <link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet">
+    <link rel="shortcut icon" href="{{ url_for('static', filename='img/favicon.png') }}">
      <script src={{ url_for('static', filename='js/fix-search.js') }}></script>
   </head>
   <body style="background-image: url({{ url_for('static', filename='img/lightedroad.jpg') }});">
@@ -19,7 +20,9 @@
       <figure class="logo">
         <img src={{ url_for('static', filename='img/cat_black.svg') }} />
         <h1>CATS R US, INC.</h1>
-        <input type="text" name="search" placeholder="Find now">
+        <form action="/search">
+          <input type="text" name="catName" placeholder="Find now">
+        </form>
       </figure>
     </header>
     <main>

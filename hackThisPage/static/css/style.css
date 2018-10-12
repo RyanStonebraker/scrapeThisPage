@@ -73,7 +73,7 @@ header figure.logo img {
   max-width: 200px;
 }
 
-header input[name="search"] {
+header input {
   width: 250px;
   font-size: 25px;
   border-radius: 5px;
@@ -87,11 +87,11 @@ header input[name="search"] {
   color: black;
 }
 
-header input[name="search"]::placeholder {
+header input::placeholder {
   color: rgba(0,0,0,.75);
 }
 
-header input[name="search"]:focus {
+header input:focus {
   width: 500px;
   transition: width 0.5s ease;
 }
@@ -108,12 +108,19 @@ main article {
   padding: 25px;
   margin: 25px 0;
   border-radius: 15px;
-  backdrop-filter: blur(5px) contrast(0.75);
-  /* background-color: rgba(255,255,255,0.25); */
+
+  /* This looks really cool, but this feature has poor support and ignores border-radius :( */
+  /* backdrop-filter: blur(5px) contrast(0.75); */
+
+  background-color: rgba(255,255,255,0.25);
 }
 
 main article figure {
   margin: 0;
+}
+
+main article figure img {
+  max-width: 300px;
 }
 
 main article section.info {
