@@ -1,6 +1,7 @@
 html, body {
   margin: 0;
   padding: 0;
+  font-family: 'Open Sans', sans-serif;
 }
 
 body {
@@ -25,14 +26,29 @@ header nav {
   align-items: center;
 }
 
-header nav a {
+header nav li {
   flex: 1;
-  text-align: center;
-  text-decoration: none;
-  color: whitesmoke;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
-header nav input[name="search"] {
+header nav li a {
+  text-decoration: none;
+  color: whitesmoke;
+  transition: all 0.5s ease;
+  padding: 15px;
+  border-radius: 15px;
+  cursor: pointer;
+}
+
+header nav li a:hover {
+  transition: all 0.5s ease;
+  background-color: rgba(228,228,228, 0.75);
+  color: black;
+}
+
+header figure.logo input[name="search"] {
   width: 250px;
   font-size: 25px;
   border-radius: 5px;
@@ -41,9 +57,16 @@ header nav input[name="search"] {
   text-align: center;
   align-items: center;
   transition: all 0.5s ease;
+  font-family: 'Open Sans', sans-serif;
+  background-color: rgba(228,228,228, 0.75);
+  color: black;
 }
 
-header nav input[name="search"]:focus {
+header figure.logo input[name="search"]::placeholder {
+  color: rgba(0,0,0,.75);
+}
+
+header figure.logo input[name="search"]:focus {
   width: 500px;
   transition: all 0.5s ease;
 }
@@ -87,10 +110,19 @@ main article section.info {
   padding: 0 25px;
 }
 
+main article section.info h1 {
+  margin-bottom: 5px;
+}
+
+main article section.info h4 {
+  margin-top: 0;
+  margin-left: 15px;
+}
+
 footer {
   color: white;
   display: flex;
   justify-content: center;
   align-items: center;
-  backdrop-filter: blur(5px) contrast(0.75);
+  background-color: rgba(255,255,255,0.25);
 }
