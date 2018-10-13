@@ -6,21 +6,21 @@ from flask import make_response
 from flask import send_from_directory
 from hackThisPage import app
 
-from sqlHelpers import *
+from . import sqlHelpers
 
 import random
 import os
 
 @app.route("/")
 def index():
-    cats = retrieveCats()
+    cats = sqlHelpers.retrieveCats()
     username = request.cookies.get("USERNAME") if "USERNAME" in request.cookies else ""
     return render_template("index.html", cats=cats, frontpage=True, username=username)
 
 @app.route("/search")
 def search():
     catName = request.args.get('catName')
-    cats = retrieveCats(catName)
+    cats = sqlHelpers.retrieveCats(catName)
     username = request.cookies.get("USERNAME") if "USERNAME" in request.cookies else ""
     return render_template("index.html", cats=cats, username=username)
 
@@ -28,10 +28,10 @@ def search():
 def login():
     errorMessage = None
     if request.method == 'POST':
-        usersCreds = retrieveEntries('users', 'credentials', '*')
+        usersCreds = sqlHelpers.retrieveEntries('users', 'credentials', '*')
         for userCreds in usersCreds:
             if request.form['username'] == userCreds[0] and request.form['password'] == userCreds[1]:
-                simpleSessionId = updateUserSessionId(request.form['username'])
+                simpleSessionId = sqlHelpers.updateUserSessionId(request.form['username'])
                 response = make_response(redirect(url_for('index')))
                 response.set_cookie('USERNAME', request.form['username'])
                 response.set_cookie('SIMPLE_SESSID', simpleSessionId)
@@ -55,7 +55,7 @@ def uploaded_file(filename):
 def post():
     if "USERNAME" in request.cookies and "SIMPLE_SESSID" in request.cookies:
         username = request.cookies.get("USERNAME")
-        userSessId = getUserSessionId(username)
+        userSessId = sqlHelpers.getUserSessionId(username)
         cachedSessId = request.cookies.get("SIMPLE_SESSID")
 
         if userSessId == cachedSessId:
@@ -65,6 +65,6 @@ def post():
                 catDescrip = request.form['catDescrip']
                 catPicture = request.files['catPicture']
                 catPicture.save(os.path.join(app.config['UPLOAD_FOLDER'], catPicture.filename))
-                addCat(catName, catPrice, catDescrip, url_for('uploaded_file', filename=catPicture.filename))
+                sqlHelpers.addCat(catName, catPrice, catDescrip, url_for('uploaded_file', filename=catPicture.filename))
             return render_template("postCat.html", authenticated=True, username=username)
     return render_template("postCat.html")
