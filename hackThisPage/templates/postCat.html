@@ -3,7 +3,7 @@
 
 {% block main %}
   {% if authenticated %}
-    <form action="" method="post">
+    <form action="" method="post" enctype = "multipart/form-data">
       <input type="text" placeholder="name" name="catName">
       <input type="text" placeholder="price" name="catPrice">
       <input type="text" placeholder="description" name="catDescrip">

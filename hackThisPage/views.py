@@ -3,12 +3,13 @@ from flask import request
 from flask import redirect
 from flask import url_for
 from flask import make_response
+from flask import send_from_directory
 from hackThisPage import app
 
 from sqlHelpers import *
 
 import random
-
+import os
 
 @app.route("/")
 def index():
@@ -46,6 +47,10 @@ def logout():
         response.set_cookie('SIMPLE_SESSID', '', expires=0)
         return response
 
+@app.route('/upload/<filename>')
+def uploaded_file(filename):
+    return send_from_directory(app.config['UPLOAD_FOLDER'], filename)
+
 @app.route("/post", methods=['GET', 'POST'])
 def post():
     if "USERNAME" in request.cookies and "SIMPLE_SESSID" in request.cookies:
@@ -58,7 +63,9 @@ def post():
                 catName = request.form['catName']
                 catPrice = request.form['catPrice']
                 catDescrip = request.form['catDescrip']
-                catPicture = request.form['catPicture']
-                addCat(catName, catPrice, catDescrip, catPicture)
+                catPicture = request.files['catPicture']
+                print("CATPCI", catPicture)
+                catPicture.save(os.path.join(app.config['UPLOAD_FOLDER'], catPicture.filename))
+                addCat(catName, catPrice, catDescrip, url_for('uploaded_file', filename=catPicture.filename))
             return render_template("postCat.html", authenticated=True, username=username)
     return render_template("postCat.html")
