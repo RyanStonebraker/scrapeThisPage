@@ -36,7 +36,6 @@ def addCat(catName, catPrice="", catDescription="", catPicture=""):
         VALUES ("{catName}", {catPrice}, "{catDescription}", "{catPicture}")
     """.format(catName=catName, catPrice=catPrice, catDescription=catDescription, catPicture=catPicture)
 
-    print("QUERY:", query)
     executeQuery('catdb', query)
 
 def getUserSessionId(username):

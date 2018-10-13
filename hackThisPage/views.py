@@ -64,7 +64,6 @@ def post():
                 catPrice = request.form['catPrice']
                 catDescrip = request.form['catDescrip']
                 catPicture = request.files['catPicture']
-                print("CATPCI", catPicture)
                 catPicture.save(os.path.join(app.config['UPLOAD_FOLDER'], catPicture.filename))
                 addCat(catName, catPrice, catDescrip, url_for('uploaded_file', filename=catPicture.filename))
             return render_template("postCat.html", authenticated=True, username=username)
