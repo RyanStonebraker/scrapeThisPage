@@ -23,8 +23,12 @@
         <form action="/search">
           <li class="top-search-bar"><input type="text" name="catName" placeholder="Find now" value="{{ request.args.catName }}"></li>
         </form>
-        <li><a href="#">Buy-A-Cat</a></li>
-        <li><a href="/login">Login</a></li>
+        <li><a href="/post">Post-A-Cat</a></li>
+        {% if username %}
+          <li><a href="/logout">Welcome, {{username}}! Logout.</a></li>
+        {% else %}
+          <li><a href="/login">Login</a></li>
+        {% endif %}
       </nav>
       {% if frontpage %}
         <figure class="logo">
