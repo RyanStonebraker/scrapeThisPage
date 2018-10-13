@@ -10,7 +10,7 @@ def executeQuery(database, query):
     try:
         mysqlConnection = pymysql.connect(host=host,user=user,password=password,db=database, use_unicode=True, charset='utf8')
     except Exception as e:
-        sys.exit('error', e)
+        sys.exit(e)
 
     mysqlCursor = mysqlConnection.cursor()
 
