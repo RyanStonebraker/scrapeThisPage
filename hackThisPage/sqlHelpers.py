@@ -32,7 +32,7 @@ def retrieveEntries(database='catdb', table='cats', columns='*', where=''):
 
 def retrieveCats(catName=""):
     where = "WHERE name LIKE '%" + catName + "%'" if catName else ""
-    return retrieveEntries('catdb', 'cats', '*', where)
+    return retrieveEntries('catdb', 'cats', 'picture, price, description, name', where)
 
 
 def addCat(catName, catPrice="", catDescription="", catPicture=""):
