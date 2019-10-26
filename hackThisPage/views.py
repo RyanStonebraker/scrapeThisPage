@@ -1,3 +1,4 @@
+import os
 from flask import render_template
 from flask import request
 from flask import redirect
@@ -8,8 +9,6 @@ from hackThisPage import app
 
 from . import sqlHelpers
 
-import random
-import os
 
 @app.route("/")
 def index():
@@ -17,12 +16,14 @@ def index():
     username = request.cookies.get("USERNAME") if "USERNAME" in request.cookies else ""
     return render_template("index.html", cats=cats, frontpage=True, username=username)
 
+
 @app.route("/search")
 def search():
     catName = request.args.get('catName')
     cats = sqlHelpers.retrieveCats(catName)
     username = request.cookies.get("USERNAME") if "USERNAME" in request.cookies else ""
     return render_template("index.html", cats=cats, username=username)
+
 
 @app.route("/login", methods=['GET', 'POST'])
 def login():
@@ -39,6 +40,7 @@ def login():
         errorMessage = "ERROR! The username or password is not valid."
     return render_template("login.html", loginpage=True, errorMessage=errorMessage)
 
+
 @app.route("/logout", methods=['GET'])
 def logout():
     if "USERNAME" in request.cookies:
@@ -47,9 +49,11 @@ def logout():
         response.set_cookie('SIMPLE_SESSID', '', expires=0)
         return response
 
+
 @app.route('/upload/<filename>')
 def uploaded_file(filename):
     return send_from_directory(app.config['UPLOAD_FOLDER'], filename)
+
 
 @app.route("/post", methods=['GET', 'POST'])
 def post():

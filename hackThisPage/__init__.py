@@ -1,9 +1,10 @@
+import os
 from flask import Flask
 
 app = Flask(__name__, instance_relative_config=True)
 
-# PUT ABSOLUTE PATH TO UPLOAD FOLDER ON SERVER HERE
-app.config['UPLOAD_FOLDER'] = "/Users/ryanstonebraker/Documents/Programming/Web Development/Projects/hackThisPage/hackThisPage/upload"
+current_folder = os.path.dirname(os.path.realpath(__file__))
+app.config['UPLOAD_FOLDER'] = os.path.join(current_folder, "upload")
 
 from hackThisPage import views
 

@@ -2,13 +2,16 @@ import sys
 import pymysql
 import random
 
+from hackThisPage import app
+
+
 def executeQuery(database, query):
-    host='localhost'
-    user = 'root'
-    password = ''
+    host = app.config["HOST"]
+    user = app.config["SQL_USER"]
+    password = app.config["SQL_PASSWORD"]
 
     try:
-        mysqlConnection = pymysql.connect(host=host,user=user,password=password,db=database, use_unicode=True, charset='utf8')
+        mysqlConnection = pymysql.connect(host=host, user=user, password=password, db=database, use_unicode=True, charset='utf8')
     except Exception as e:
         sys.exit(e)
 
@@ -26,9 +29,11 @@ def retrieveEntries(database='catdb', table='cats', columns='*', where=''):
     query = "SELECT {columns} FROM {table} {where}".format(columns=columns, table=table, where=where)
     return executeQuery(database, query)
 
+
 def retrieveCats(catName=""):
     where = "WHERE name LIKE '%" + catName + "%'" if catName else ""
     return retrieveEntries('catdb', 'cats', '*', where)
+
 
 def addCat(catName, catPrice="", catDescription="", catPicture=""):
     query = """
@@ -38,6 +43,7 @@ def addCat(catName, catPrice="", catDescription="", catPicture=""):
 
     executeQuery('catdb', query)
 
+
 def getUserSessionId(username):
     query = """
         SELECT sess_id
@@ -46,6 +52,7 @@ def getUserSessionId(username):
     """.format(username=username)
 
     return executeQuery('users', query)[0][0]
+
 
 def updateUserSessionId(username):
     sessionId = str(int(random.random() * 100000))
