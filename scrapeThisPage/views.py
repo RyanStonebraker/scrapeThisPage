@@ -7,13 +7,11 @@ from flask import make_response
 from flask import send_from_directory
 from hackThisPage import app
 
-from . import sqlHelpers
-
 
 @app.route("/")
 def index():
     cats = sqlHelpers.retrieveCats()
-    username = request.cookies.get("USERNAME") if "USERNAME" in request.cookies else ""
+    username = request.cookies.get("USERNAME", "")
     return render_template("index.html", cats=cats, frontpage=True, username=username)
 
 
@@ -21,7 +19,7 @@ def index():
 def search():
     catName = request.args.get('catName')
     cats = sqlHelpers.retrieveCats(catName)
-    username = request.cookies.get("USERNAME") if "USERNAME" in request.cookies else ""
+    username = request.cookies.get("USERNAME", "")
     return render_template("index.html", cats=cats, username=username)
 
 
