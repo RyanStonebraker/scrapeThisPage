@@ -68,5 +68,5 @@ def post():
                 catPicture = request.files['catPicture']
                 catPicture.save(os.path.join(app.config['UPLOAD_FOLDER'], catPicture.filename))
                 sqlHelpers.addCat(catName, catPrice, catDescrip, url_for('uploaded_file', filename=catPicture.filename))
-            return render_template("postCat.html", authenticated=True, username=username)
+            return render_template("postCat.html", postpage=True, authenticated=True, username=username)
     return render_template("postCat.html")

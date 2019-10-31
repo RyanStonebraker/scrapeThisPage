@@ -12,7 +12,7 @@ $(document).ready(function () {
       article.children("figure").append(`<img src=${cat["picture"]}>`);
       article.append("<section class='info'></section>");
       article.children("section").append(`<h1>${cat["name"]}</h1>`);
-      article.children("section").append(`<h4>${cat["price"]}</h4>`);
+      article.children("section").append(`<h4>$${cat["price"]}</h4>`);
       article.children("section").append(`<p>${cat["description"]}</p>`);
       $("main").append(article);
     });
