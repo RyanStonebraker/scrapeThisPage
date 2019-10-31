@@ -1,4 +1,5 @@
 Pipfile.lock
 */__pycache__
 *.pyc
-hackThisPage/upload/*
+scrapeThisPage/upload/*
+scrape.db

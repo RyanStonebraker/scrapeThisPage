@@ -5,20 +5,20 @@ from flask import redirect
 from flask import url_for
 from flask import make_response
 from flask import send_from_directory
-from hackThisPage import app
+from scrapeThisPage import app
 
+from . import sqlHelpers
 
 @app.route("/")
 def index():
-    cats = sqlHelpers.retrieveCats()
     username = request.cookies.get("USERNAME", "")
-    return render_template("index.html", cats=cats, frontpage=True, username=username)
+    return render_template("index.html", cats=[], frontpage=True, username=username)
 
 
 @app.route("/search")
 def search():
     catName = request.args.get('catName')
-    cats = sqlHelpers.retrieveCats(catName)
+    cats = []
     username = request.cookies.get("USERNAME", "")
     return render_template("index.html", cats=cats, username=username)
 
