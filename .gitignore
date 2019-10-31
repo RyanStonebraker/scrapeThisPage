@@ -3,3 +3,4 @@ Pipfile.lock
 *.pyc
 scrapeThisPage/upload/*
 scrape.db
+.DS_Store

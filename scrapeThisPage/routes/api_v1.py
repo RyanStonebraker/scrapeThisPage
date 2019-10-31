@@ -7,7 +7,7 @@ blueprint = Blueprint('api_v1', __name__)
 
 @blueprint.route("/search", methods=["GET"])
 def search():
-    catName = request.args.get('name')
+    catName = request.args.get('name', "")
     cats = sqlHelpers.retrieveCats(catName)
     results = []
     for cat in cats:
